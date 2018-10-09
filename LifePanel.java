@@ -1,11 +1,9 @@
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.Graphics;
 import java.awt.Insets;
-
+import java.util.concurrent.TimeUnit;
+import javax.swing.Timer;
 import javax.swing.JPanel;
 //===========================================================================
 /** this class allows one to display and interact with a Life board. */
@@ -13,6 +11,8 @@ public class LifePanel extends JPanel implements KeyListener, MouseListener
 {
     private ConwaysGameOfLife  mGame;
     private boolean timerIsOn = false;
+    private Timer timer;
+    private boolean isTimerIsOn = false;
     private static final String helpText = "Press ' ' (or 'n' or 'g') to advance to next generation. \n"
             + "Press 'q' (or 'x') to quit. \n"
             + "Press 'l' to load. \n"
@@ -120,14 +120,29 @@ public class LifePanel extends JPanel implements KeyListener, MouseListener
             case 't' :
             case 'T' :
                 this.timerIsOn = !timerIsOn;
-                if (timerIsOn)    System.out.println( "timer is on" );
-                else              System.out.println( "timer is off" );
-                int i=0;
-                while(timerIsOn && i!=5) {
-                    mGame.nextGeneration();
-                    i++;
+                if (!timerIsOn) {
+                    System.out.println("Timer is off");
                 }
+                if (timerIsOn) {
+                    System.out.println("Timer is on");
+
+                }
+
                 break;
+//           System.out.println(this);
+//
+//            try
+//            {
+//                Thread.sleep(1000);
+//            }
+//            catch(InterruptedException ex)
+//            {
+//                Thread.currentThread().interrupt();
+//            }
+//                while(timerIsOn){
+//                     mGame.nextGeneration();
+//                }
+
         }
     }
 
